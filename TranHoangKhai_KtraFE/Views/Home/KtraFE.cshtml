@@ -1,0 +1,505 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trần Hoàng Khải_KtraFE</title>
+    <link rel="icon" href="https://www.amazon.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #eaeded;
+        }
+
+        header {
+            background-color: #131921;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            display: flex;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+
+            .search-bar input {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                border-radius: 4px 0 0 4px;
+            }
+
+            .search-bar button {
+                padding: 10px 15px;
+                background-color: #febd69;
+                border: none;
+                border-radius: 0 4px 4px 0;
+                cursor: pointer;
+                color: #333;
+            }
+
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            left: 10px;
+            color: #f08804;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .cart-text {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        main {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1500px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+        .left-column {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cart-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 0px;
+        }
+
+            .cart-container h1 {
+                font-weight: normal;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+            .cart-item img {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+            }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .item-title {
+            font-size: 18px;
+            color: #007185;
+            margin-bottom: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+            .item-title:hover {
+                text-decoration: underline;
+            }
+
+        .in-stock {
+            color: #007600;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .item-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .qty-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f2f2;
+            box-shadow: 0 2px 5px rgba(15,17,17,.15);
+        }
+
+        .action-link {
+            color: #007185;
+            cursor: pointer;
+        }
+
+            .action-link:hover {
+                text-decoration: underline;
+            }
+
+        .item-price-box {
+            text-align: right;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .subtotal-bottom {
+            text-align: right;
+            font-size: 18px;
+        }
+
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .checkout-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 0px;
+        }
+
+            .checkout-box .subtotal-text {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: #ffd814;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(15,17,17,.15);
+        }
+
+            .btn-checkout:hover {
+                background-color: #f7ca00;
+            }
+
+        footer {
+            background-color: #232f3e;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+        }
+
+        .your-items-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 0px;
+        }
+
+            .your-items-container h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+        .your-items-tabs {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            font-size: 14px;
+        }
+
+            .your-items-tabs span {
+                margin-right: 20px;
+                cursor: pointer;
+                color: #007185;
+            }
+
+                .your-items-tabs span.active {
+                    font-weight: bold;
+                    color: #111;
+                    border-bottom: 2px solid #e47911;
+                    padding-bottom: 10px;
+                }
+
+        .btn-action {
+            background-color: #ffd814;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            box-shadow: 0 2px 5px rgba(15,17,17,.15);
+        }
+
+        .popular-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 0px;
+        }
+
+            .popular-box h3 {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+        .popular-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+            .popular-item img {
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+            }
+
+        .popular-details {
+            font-size: 13px;
+        }
+
+        .popular-title {
+            color: #007185;
+            text-decoration: none;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .popular-price {
+            color: #B12704;
+            margin: 5px 0;
+        }
+
+        .stars {
+            color: #ffa41c;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-left">
+            <div class="logo" style="display: flex; align-items: center; padding-top: 5px;">
+                <a href="#" style="display: inline-block;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+                         alt="Amazon Logo"
+                         style="height: 28px; width: auto; object-fit: contain; filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(15deg) brightness(1) contrast(1.2); transition: transform 0.2s;">
+                </a>
+            </div>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm sản phẩm...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="nav-right">
+            <span>Trần Hoàng Khải</span>
+            <span>Đơn hàng</span>
+            <div class="cart-icon">
+                <span class="cart-badge" id="cart-badge">0</span>
+                <i class="fas fa-shopping-cart" style="font-size: 32px;"></i>
+                <span class="cart-text">Cart</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="left-column">
+            <section class="cart-container">
+                <h1>Giỏ Hàng</h1>
+
+                <div class="cart-item">
+                    <input type="checkbox" checked>
+                    <img src="https://th.bing.com/th/id/OIP.nK_bVEnlibmFZk0TZmE-awHaE8?w=278&amp;h=187&amp;c=7&amp;r=0&amp;o=7&amp;dpr=2&amp;pid=1.7&amp;rm=3" alt="Image result for đồng hồ rolex hình sản phẩm" />
+                    <div class="item-details">
+                        <a href="#" class="item-title">Đồng hồ Rolex chính hãng_Đầy đủ phụ kiện (Hộp da cao cấp + Thẻ Bảo Hành + Tag)</a>
+                        <div class="in-stock">Còn Hàng</div>
+                        <div class="item-actions">
+                            <input type="number" class="qty-input" value="1" min="0" data-price="5000000">
+                            <span class="action-link">Delete</span>
+                            <span class="action-link">Save for later</span>
+                        </div>
+                    </div>
+                    <div class="item-price-box">
+                        <span class="item-total-price">5.000.000</span> vnđ
+                    </div>
+                </div>
+
+                <div class="cart-item">
+                    <input type="checkbox" checked>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJqDIizS7ZKNOz15HGnl6DSyCc8jP3BVXNhXATYk1whw&amp;s" alt="iPhone 18 Series (Pro Max/ Pro) giá từ 38,99 triệu, sẵn hàng" />
+                    <div class="item-details">
+                        <a href="#" class="item-title">(ORDER) iPhone 18 Pro 256GB đầy đủ phụ kiện CHÍNH HÃNG</a>
+                        <div class="in-stock">Còn Hàng</div>
+                        <div class="item-actions">
+                            <input type="number" class="qty-input" value="1" min="0" data-price="35990000">
+                            <span class="action-link">Delete</span>
+                            <span class="action-link">Save for later</span>
+                        </div>
+                    </div>
+                    <div class="item-price-box">
+                        <span class="item-total-price">35.990.000</span> vnđ
+                    </div>
+                </div>
+
+                <div class="subtotal-bottom">
+                    Tổng cộng (<span class="total-items-text">0</span> món):
+                    <strong><span class="grand-total-price">0</span> vnđ</strong>
+                </div>
+            </section>
+            <section class="your-items-container">
+                <h2>Thong Tin Giỏ Hàng</h2>
+                <div class="your-items-tabs">
+                    <span class="active">Còn Lại </span>
+                    <span>Mua Lại</span>
+                </div>
+
+                <div class="cart-item" style="border: none; margin-bottom: 0; padding-bottom: 0;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkEN2w_WvXfjArVkQTr39MVzgq4DT-u-ale4ZqcN5QgQ&amp;s=10" alt="Tai nghe Apple AirPods Pro 3" />
+                    <div class="item-details">
+                        <a href="#" class="item-title">Tai nghe Bluetooth Apple AirPods Pro 3</a>
+                        <div class="in-stock">Còn Hàng</div>
+                        <div class="item-actions">
+                            <button class="btn-action">Thanh Toán</button>
+                            <span class="action-link">Xóa</span>
+                        </div>
+                    </div>
+                    <div class="item-price-box">
+                        <span>4.200.000 vnđ</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        <aside class="sidebar">
+
+            <div class="checkout-box">
+                <div class="subtotal-text">
+                    Tổng cộng (<span class="total-items-text">0</span> món):
+                    <strong><span class="grand-total-price">0</span> vnđ</strong>
+                </div>
+                <button class="btn-checkout">Proceed to checkout</button>
+            </div>
+            <div class="popular-box">
+                <h3>Gợi Ý Dành Cho Bạn</h3>
+
+                <div class="popular-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj46YhYKA3UTht48hEOiy3m6D7Y2IyaLgUzn8gLLu9tg&amp;s" alt="Ốp lưngiphone" />
+                        <div class="popular-details">
+                            <a href="#" class="popular-title">Ốp lưng trong suốt chống sốc Gothic cho iPhone</a>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span style="color: #007185; margin-left: 5px;">1,024</span>
+                            </div>
+                            <div class="popular-price"><strong>150.000 vnđ</strong></div>
+                            <button class="btn-action">Thêm Vào Giỏ</button>
+                        </div>
+                    </div>
+
+                <div class="popular-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpdSqAFZwnN64ieoAqDZ9CCPJNpAtytAx5C40RCXEv5A&amp;s=10" alt="Kính Cường Lực Chống Nhìn Trộm JCPAL Preserve Privacy iPhone" />
+                        <div class="popular-details">
+                            <a href="#" class="popular-title">Kính cường lực chống nhìn trộm cao cấp</a>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                <span style="color: #007185; margin-left: 5px;">512</span>
+                            </div>
+                            <div class="popular-price"><strong>80.000 vnđ</strong></div>
+                            <button class="btn-action">Thêm Vào Giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Amazon Clone - Trần Hoàng Khải (HUFLIT)</p>
+        </footer>
+
+        <script>
+            function calculateCart() {
+                const cartItems = document.querySelectorAll('.cart-container .cart-item');
+
+                let totalItems = 0;
+                let grandTotalPrice = 0;
+
+                cartItems.forEach(item => {
+                    const qtyInput = item.querySelector('.qty-input');
+                    if (!qtyInput) return;
+
+                    const itemTotalPriceDisplay = item.querySelector('.item-total-price');
+                    const quantity = parseInt(qtyInput.value) || 0;
+                    const unitPrice = parseFloat(qtyInput.getAttribute('data-price'));
+
+                    const itemTotal = quantity * unitPrice;
+                    itemTotalPriceDisplay.innerText = itemTotal.toLocaleString('vi-VN');
+
+                    totalItems += quantity;
+                    grandTotalPrice += itemTotal;
+                });
+
+                document.getElementById('cart-badge').innerText = totalItems;
+
+                const itemTexts = document.querySelectorAll('.total-items-text');
+                itemTexts.forEach(text => text.innerText = totalItems);
+
+                const priceTexts = document.querySelectorAll('.grand-total-price');
+                priceTexts.forEach(text => text.innerText = grandTotalPrice.toLocaleString('vi-VN'));
+            }
+
+            const quantityInputs = document.querySelectorAll('.qty-input');
+            quantityInputs.forEach(input => {
+                input.addEventListener('input', calculateCart);
+                input.addEventListener('change', calculateCart);
+            });
+
+            calculateCart();
+        </script>
+    </body>
+    </html>
